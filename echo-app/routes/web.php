@@ -11,8 +11,18 @@ use App\Events\OrderStatusUpdated;
 | contains the "web" middleware group. Now create something great!
 |
 */
+class Order
+{
+    public $id;
 
-Route::get('/', function () {
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+}
+
+Route::get('/', function () 
+{
     OrderStatusUpdated::dispatch();
     return view('welcome');
 });

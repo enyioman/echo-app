@@ -14,15 +14,17 @@ class OrderStatusUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $order;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
-    }
+        $this->order = $order;
+    } 
 
     /**
      * Get the channels the event should broadcast on.
