@@ -23,8 +23,8 @@ class OrderStatusUpdated implements ShouldBroadcast
      */
     public function __construct($order)
     {
-        $this->order = $order;
-    } 
+        $this->order = $order; 
+    }
 
     /**
      * Get the channels the event should broadcast on.

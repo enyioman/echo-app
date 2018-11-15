@@ -1,6 +1,6 @@
 <?php
 
-use App\Events\OrderStatusUpdated;
+use App\Task; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,18 +11,32 @@ use App\Events\OrderStatusUpdated;
 | contains the "web" middleware group. Now create something great!
 |
 */
-class Order
-{
-    public $id;
+// class Order 
+// {
+//     public $id;
+    
+//     public function __construct($id) 
+//     {
+//         $this->id = $id;
+//     }
+// }
 
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
-}
-
-Route::get('/', function () 
-{
-    OrderStatusUpdated::dispatch();
+Route::get('/', function () {
+    
     return view('welcome');
+    
+});
+
+// Route::get('/update', function () {
+
+//     OrderStatusUpdated::dispatch(new Order(5));
+
+// });
+
+Route::get('/tasks', function () {
+    return Task::latest()->pluck('body');
+});
+
+Route::post('/tasks', function () {
+    Task::forceCreate(request(['body']));
 });
