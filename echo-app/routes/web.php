@@ -1,6 +1,7 @@
 <?php
 
 use App\Task; 
+use App\Events\TaskCreated;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +40,6 @@ Route::get('/tasks', function () {
 
 Route::post('/tasks', function () {
     Task::forceCreate(request(['body']));
+
+    event(new TaskCreated($task)); 
 });
